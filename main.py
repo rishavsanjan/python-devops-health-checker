@@ -1,5 +1,6 @@
 import shutil
 import subprocess
+import argparse
 from system_checks import (
     check_cpu,
     check_memory,
@@ -7,11 +8,32 @@ from system_checks import (
     get_status,
     check_platform
 )
+from report import (create_result, save_report)
 
 
+results = []
 def check_command(command):
     return shutil.which(command)
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Python DevOps Health Checker"
+    )
+
+    parser.add_argument(
+        "--check",
+        choices=["all", "docker", "system"],
+        default="all",
+        help="Choose which health checks to execute"
+    )
+
+    parser.add_argument(
+        "--output",
+        default="reports/health_report.json",
+        help="Path where the JSON report will be saved"
+    )
+
+    return parser.parse_args()
 
 def check_tool_version(command):
     try:
@@ -63,12 +85,17 @@ def print_resource_check(name, usage):
 def main():
     commands = ["python", "docker", "kubectl", "aws"]
 
+    args = parse_args()
+
+    if args.check
+
     for command in commands:
         if check_command(command):
             version = check_tool_version(command)
             print(f"[OK] {command}: {version}")
         else:
             print(f"[MISSING] {command}")
+    
 
 main()
 
@@ -89,3 +116,36 @@ print("Current platform : ", current_platform)
 print("CPU Usage:", cpu_usage, "%", get_status(cpu_usage))
 print("Memory Usage:", memory_usage, "%", get_status(memory_usage))
 print("Disk Usage:", disk_usage, "%", get_status(disk_usage))
+
+cpu_result = create_result(
+     "CPU",
+     get_status(cpu_usage),
+     f"CPU usage is {cpu_usage:.1f}%",
+     cpu_usage
+)
+
+results.append(cpu_result)
+
+memory_result = create_result(
+     "Memory",
+     get_status(memory_usage),
+     f"Memory usage is {memory_usage:.1f}%",
+     memory_usage
+)
+
+results.append(memory_result)
+
+disk_result = create_result(
+     "Disk",
+     get_status(disk_usage),
+     f"Disk usage is {disk_usage:.1f}%",
+     disk_usage
+)
+
+results.append(disk_result)
+
+report_file = save_report(results)
+print(f"\nReport saved to: {report_file}")
+
+
+
