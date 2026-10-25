@@ -26,12 +26,12 @@ def check_disk():
     disk = psutil.disk_usage("/")
     return disk.percent
 
-current_platform = check_platform()
-cpu_usage = check_cpu()
-memory_usage = check_memory()
-disk_usage = check_disk()
+# current_platform = check_platform()
+# cpu_usage = check_cpu()
+# memory_usage = check_memory()
+# disk_usage = check_disk()
 
-print("Current platform : ", current_platform)
-print("CPU Usage:", cpu_usage, "%", get_status(cpu_usage))
-print("Memory Usage:", memory_usage, "%", get_status(memory_usage))
-print("Disk Usage:", disk_usage, "%", get_status(disk_usage))
+# print("Current platform : ", current_platform)
+# print("CPU Usage:", cpu_usage, "%", get_status(cpu_usage))
+# print("Memory Usage:", memory_usage, "%", get_status(memory_usage))
+# print("Disk Usage:", disk_usage, "%", get_status(disk_usage))

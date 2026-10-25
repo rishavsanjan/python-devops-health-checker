@@ -2,22 +2,22 @@
     {
         "name": "CPU",
         "status": "OK",
-        "message": "CPU usage is 15.1%",
-        "value": 15.1,
-        "timestamp": "2026-10-24T16:39:00.918168+00:00"
+        "message": "CPU usage is 12.3%",
+        "value": 12.3,
+        "timestamp": "2026-10-25T16:53:29.877871+00:00"
     },
     {
         "name": "Memory",
         "status": "OK",
-        "message": "Memory usage is 66.3%",
-        "value": 66.3,
-        "timestamp": "2026-10-24T16:39:00.918192+00:00"
+        "message": "Memory usage is 55.7%",
+        "value": 55.7,
+        "timestamp": "2026-10-25T16:53:29.877886+00:00"
     },
     {
         "name": "Disk",
         "status": "WARNING",
-        "message": "Disk usage is 82.8%",
-        "value": 82.8,
-        "timestamp": "2026-10-24T16:39:00.918197+00:00"
+        "message": "Disk usage is 81.8%",
+        "value": 81.8,
+        "timestamp": "2026-10-25T16:53:29.877890+00:00"
     }
 ]
